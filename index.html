@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Project 2</title>
+    <script src="https://d3js.org/d3.v5.min.js"> </script>
+
+    <style>
+
+    .disabled{
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .hidden{
+      opacity: 0;
+      cursor: not-allowed;
+    }
+
+    .nextButton{
+      border-radius: 4px;
+      border: none;
+      color: #1f3a1d;
+      text-align: center;
+      padding: 5px;
+      width: 50px;
+      cursor: pointer;
+      margin: 5px;
+      background-color: #8cff82;
+      font-size: 14px;
+      font-weight: bold;
+      outline: none;
+    }
+
+    .nextButton:active{
+      background-color: #dbffd6;
+    }
+
+    .resetButton{
+      border-radius: 4px;
+      border: none;
+      color: #111111;
+      text-align: center;
+      padding: 5px;
+      width: 100px;
+      cursor: pointer;
+      margin: 5px;
+      background-color: #dddddd;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .optionButtonContent{
+      border-radius: 4px;
+      border: 0px solid black;
+      border-color: #000000;
+      color: #000000;
+      text-align: left;
+      padding: 5px;
+      cursor: pointer;
+      margin: 5px;
+      background-color: #ffffff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .optionButtonPicture{
+      border-radius: 4px;
+      align: top;
+      padding: 5px;
+      cursor: pointer;
+      margin: 5px;
+      outline: none;
+    }
+
+    .optionButtonIndex{
+      border-radius: 50%;
+      border: 1px solid black;
+      border-color: #000000;
+      color: #000000;
+      text-align: center;
+      padding: 5px;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      margin: 5px;
+      background-color: #ffffff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .title{
+      font-size: 20px;
+      font-weight: bold;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .subtitle{
+      font-size: 18px;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div id="title" class="title">
+      Multiple-Choice Question 1
+    </div>
+
+    <div id="subtitle" class="subtitle">
+      This is the description (subtitle) of this question.
+    </div>
+
+    <div id="content">
+
+    </div>
+
+    <div id="operations">
+      <button id="nextButton" class="nextButton disabled"> Next </button>
+      <button id="resetButton" class="resetButton" onClick="document.location.reload(true)"> Start Over </button>
+    </div>
+
+    <script>
+      optionIndexList = [];
+
+      function addOptionButton(index, text)
+      {
+        var indexBtn = document.createElement("button");
+        indexBtn.innerHTML = index;
+        indexBtn.dataset.index = index;
+        indexBtn.className = "optionButtonIndex";
+        indexBtn.setAttribute("id", index + "Index");
+        indexBtn.setAttribute("onclick", "optionClicked(this.dataset.index)");
+        document.getElementById("content").appendChild(indexBtn);
+
+        var contentBtn = document.createElement("button");
+        contentBtn.innerHTML = text;
+        contentBtn.dataset.index = index;
+        contentBtn.className = "optionButtonContent";
+        contentBtn.setAttribute("id", index + "Content");
+        contentBtn.setAttribute("onclick", "optionClicked(this.dataset.index)");
+        document.getElementById("content").appendChild(contentBtn);
+
+        var lineBreak = document.createElement("br");
+        document.getElementById("content").appendChild(lineBreak);
+
+        optionIndexList.push(index);
+      }
+
+      function addPictureButton(index, picturePath)
+      {
+        var indexBtn = document.createElement("button");
+        indexBtn.innerHTML = index;
+        indexBtn.dataset.index = index;
+        indexBtn.className = "optionButtonIndex";
+        indexBtn.setAttribute("id", index + "Index");
+        indexBtn.setAttribute("onclick", "optionClicked(this.dataset.index)");
+        document.getElementById("content").appendChild(indexBtn);
+
+        var contentBtn = document.createElement("input");
+        contentBtn.dataset.index = index;
+        contentBtn.className = "optionButtonPicture";
+        contentBtn.setAttribute("width", 100);
+        contentBtn.setAttribute("type", "image");
+        contentBtn.setAttribute("src", picturePath);
+        contentBtn.setAttribute("id", index + "Content");
+        contentBtn.setAttribute("onclick", "optionClicked(this.dataset.index)");
+        contentBtn.setAttribute("align", "top");
+        document.getElementById("content").appendChild(contentBtn);
+
+        var lineBreak = document.createElement("br");
+        document.getElementById("content").appendChild(lineBreak);
+
+        optionIndexList.push(index);
+      }
+
+      addOptionButton("A", "This is the description of this option (A)");
+      addOptionButton("B", "This is the description of another option B");
+      addOptionButton("C", "This is the description of option C");
+      addOptionButton("D", "This is the description of option D");
+      addPictureButton("E", "paintings/placeholder.bmp");
+      addPictureButton("F", "paintings/placeholder2.bmp");
+
+      function optionClicked(optionIndex)
+      {
+        console.log(optionIndex);
+
+        optionIndexList.forEach(function (item, index) {
+          document.getElementById(item + "Index").style.color = "#000000";
+          document.getElementById(item + "Index").style.backgroundColor = "#ffffff";
+          document.getElementById(item + "Content").style.color = "#000000";
+          document.getElementById(item + "Content").style.backgroundColor = "#ffffff";
+        });
+
+        document.getElementById(optionIndex + "Index").style.color = "#ffffff";
+        document.getElementById(optionIndex + "Index").style.backgroundColor = "#000000";
+        document.getElementById(optionIndex + "Content").style.color = "#ffffff";
+        document.getElementById(optionIndex + "Content").style.backgroundColor = "#000000";
+
+        document.getElementById("nextButton").setAttribute("class", "nextButton");
+
+      }
+
+
+    </script>
+  </body>
+</html>
