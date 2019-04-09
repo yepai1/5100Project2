@@ -53,7 +53,7 @@
     .optionButtonContent{
       border-radius: 4px;
       border: 0px solid black;
-      border-color: #000000;
+      border-color: #888888;
       color: #000000;
       text-align: left;
       padding: 5px;
@@ -76,7 +76,7 @@
     .optionButtonIndex{
       border-radius: 50%;
       border: 1px solid black;
-      border-color: #000000;
+      border-color: #888888;
       color: #000000;
       text-align: center;
       padding: 5px;
@@ -192,14 +192,16 @@
         optionIndexList.forEach(function (item, index) {
           document.getElementById(item + "Index").style.color = "#000000";
           document.getElementById(item + "Index").style.backgroundColor = "#ffffff";
+          document.getElementById(item + "Index").style.borderColor = "#888888";
           document.getElementById(item + "Content").style.color = "#000000";
           document.getElementById(item + "Content").style.backgroundColor = "#ffffff";
         });
 
-        document.getElementById(optionIndex + "Index").style.color = "#ffffff";
-        document.getElementById(optionIndex + "Index").style.backgroundColor = "#000000";
-        document.getElementById(optionIndex + "Content").style.color = "#ffffff";
-        document.getElementById(optionIndex + "Content").style.backgroundColor = "#000000";
+        document.getElementById(optionIndex + "Index").style.color = "#1f3a1d";
+        document.getElementById(optionIndex + "Index").style.backgroundColor = "#dbffd6";
+        document.getElementById(optionIndex + "Index").style.borderColor = "#dbffd6";
+        document.getElementById(optionIndex + "Content").style.color = "#1f3a1d";
+        document.getElementById(optionIndex + "Content").style.backgroundColor = "#dbffd6";
 
         document.getElementById("nextButton").setAttribute("class", "nextButton");
 
