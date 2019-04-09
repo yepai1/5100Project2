@@ -19,7 +19,8 @@
 
     .nextButton{
       border-radius: 4px;
-      border: none;
+      border: 0.5px solid black;
+      border-color: #888888;
       color: #1f3a1d;
       text-align: center;
       padding: 5px;
@@ -38,7 +39,8 @@
 
     .resetButton{
       border-radius: 4px;
-      border: none;
+      border: 0.5px solid black;
+      border-color: #888888;
       color: #111111;
       text-align: center;
       padding: 5px;
@@ -75,7 +77,7 @@
 
     .optionButtonIndex{
       border-radius: 50%;
-      border: 1px solid black;
+      border: 0.5px solid black;
       border-color: #888888;
       color: #000000;
       text-align: center;
@@ -192,14 +194,12 @@
         optionIndexList.forEach(function (item, index) {
           document.getElementById(item + "Index").style.color = "#000000";
           document.getElementById(item + "Index").style.backgroundColor = "#ffffff";
-          document.getElementById(item + "Index").style.borderColor = "#888888";
           document.getElementById(item + "Content").style.color = "#000000";
           document.getElementById(item + "Content").style.backgroundColor = "#ffffff";
         });
 
         document.getElementById(optionIndex + "Index").style.color = "#1f3a1d";
         document.getElementById(optionIndex + "Index").style.backgroundColor = "#8cff82";
-        document.getElementById(optionIndex + "Index").style.borderColor = "#8cff82";
         document.getElementById(optionIndex + "Content").style.color = "#1f3a1d";
         document.getElementById(optionIndex + "Content").style.backgroundColor = "#8cff82";
 
