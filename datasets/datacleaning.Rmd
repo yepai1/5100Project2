@@ -4,4 +4,13 @@ data = read.csv("MetObjects.csv")
 simple.data = subset(data, select = c(Object.ID, Title, Culture, Artist.Display.Name, Artist.Nationality, Object.End.Date, Medium, Country, Classification))
 
 filtered.data = simple.data %>% filter(str_detect(Classification, "Painting"))
+
+write.csv(filtered.data, file = "cleandata.csv")
+```
+
+```{r}
+genrepainting = read.csv("genrepainting.csv")
+genrepainting$statement = paste("PICTURE",genrepainting$statement, sep="")
+text = toJSON(genrepainting)
+text
 ```
