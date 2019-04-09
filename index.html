@@ -96,12 +96,14 @@
       font-weight: bold;
       padding: 5px;
       margin: 5px;
+      text-align: left;
     }
 
     .subtitle{
       font-size: 18px;
       padding: 5px;
       margin: 5px;
+      text-align: left;
     }
 
     </style>
@@ -171,7 +173,7 @@
         contentBtn.setAttribute("src", picturePath);
         contentBtn.setAttribute("id", index + "Content");
         contentBtn.setAttribute("onclick", "optionClicked(this.dataset.index)");
-        contentBtn.setAttribute("align", "top");
+        contentBtn.setAttribute("align", "center");
         document.getElementById("content").appendChild(contentBtn);
 
         var lineBreak = document.createElement("br");
@@ -180,12 +182,23 @@
         optionIndexList.push(index);
       }
 
-      addOptionButton("A", "This is the description of this option (A)");
-      addOptionButton("B", "This is the description of another option B");
-      addOptionButton("C", "This is the description of option C");
-      addOptionButton("D", "This is the description of option D");
-      addPictureButton("E", "paintings/placeholder.bmp");
-      addPictureButton("F", "paintings/placeholder2.bmp");
+      function addQuestion(question)
+      {
+        var defaultIndex = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+        document.getElementById("title").innerHTML = question.title;
+        document.getElementById("subtitle").innerHTML = question.subtitle;
+        question.options.forEach(function(item, index)
+        {
+          if(item.substring(0, 7) === "PICTURE")
+          {
+            addPictureButton(defaultIndex[index], item.replace("PICTURE",""));
+          }
+          else
+          {
+            addOptionButton(defaultIndex[index], item);
+          }
+        });
+      }
 
       function optionClicked(optionIndex)
       {
@@ -207,6 +220,11 @@
 
       }
 
+      question1 = {
+        title:"Who is your favorite artist?", subtitle:"Choose your favorite artist", options:["This is the description of this option", "This is the description of another option", "This is the description of the third option", "This is the description of the last option", "PICTUREpaintings/placeholder.bmp", "PICTUREpaintings/placeholder2.bmp"]
+      }
+
+      addQuestion(question1);
 
     </script>
   </body>

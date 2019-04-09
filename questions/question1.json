@@ -1,0 +1,8 @@
+title:"What is your favorite artist?",
+subtitle:"Choose your favorite artist",
+options:["This is the description of this option",
+  "This is the description of another option",
+  "This is the description of the third option",
+  "This is the description of the last option",
+  "PICTUREpaintings/placeholder.bmp",
+  "PICTUREpaintings/placeholder2.bmp"]
