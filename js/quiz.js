@@ -115,17 +115,17 @@ function optionClicked(optionIndex, optionAnswer)
 
   //reset all options' visuals
   optionIndexList.forEach(function (item, index) {
-    document.getElementById(item + "Index").style.color = "#000000";
-    document.getElementById(item + "Index").style.backgroundColor = "#ffffff";
-    document.getElementById(item + "Content").style.color = "#000000";
-    document.getElementById(item + "Content").style.backgroundColor = "#ffffff";
+    document.getElementById(item + "Index").style.color = "#ffffff";
+    document.getElementById(item + "Index").style.backgroundColor = "#5d4037";
+    document.getElementById(item + "Content").style.color = "#ffffff";
+    document.getElementById(item + "Content").style.backgroundColor = "#5d4037";
   });
 
   //update the clicked option's visuals
-  document.getElementById(optionIndex + "Index").style.color = "#1f3a1d";
-  document.getElementById(optionIndex + "Index").style.backgroundColor = "#8cff82";
-  document.getElementById(optionIndex + "Content").style.color = "#1f3a1d";
-  document.getElementById(optionIndex + "Content").style.backgroundColor = "#8cff82";
+  document.getElementById(optionIndex + "Index").style.color = "#000000";
+  document.getElementById(optionIndex + "Index").style.backgroundColor = "#a0af22";
+  document.getElementById(optionIndex + "Content").style.color = "#000000";
+  document.getElementById(optionIndex + "Content").style.backgroundColor = "#a0af22";
 
   //enable and highlight next button
   document.getElementById("nextButton").setAttribute("class", "nextButton");
@@ -171,14 +171,10 @@ function nextQuestion()
     if(compare === 3)
     {
       resultArtist = genreArtist[mostFrequent];
-      console.log(mostFrequent);
-      console.log(resultArtist);
     }
     else
     {
       resultArtist = genreArtist[mostFrequent];
-      console.log(mostFrequent);
-      console.log(resultArtist);
     }
   }
 }
