@@ -10,19 +10,23 @@ var currentOption = "";
 var answers = [];
 // final result
 var resultArtist = "";
+// total question count
+var totalQuestions = 5;
+// Image displayed per question
+var paintingPerPage = 5;
 // all paintings
 var artgenre = [{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Juan_Gris_-_Portrait_of_Pablo_Picasso_-_Google_Art_Project.jpg/420px-Juan_Gris_-_Portrait_of_Pablo_Picasso_-_Google_Art_Project.jpg","genre":"Cubism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/thumb/5/55/Gino_Severini%2C_1919%2C_Boh%C3%A9mien_Jouant_de_L%27Accord%C3%A9on_%28The_Accordion_Player%29.jpg/284px-Gino_Severini%2C_1919%2C_Boh%C3%A9mien_Jouant_de_L%27Accord%C3%A9on_%28The_Accordion_Player%29.jpg","genre":"Cubism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Juan_Gris%2C_1915%2C_Nature_morte_%C3%A0_la_nappe_%C3%A0_carreaux_%28Still_Life_with_Checked_Tablecloth%29%2C_oil_on_canvas%2C_116.5_x_89.3_cm.jpg/275px-Juan_Gris%2C_1915%2C_Nature_morte_%C3%A0_la_nappe_%C3%A0_carreaux_%28Still_Life_with_Checked_Tablecloth%29%2C_oil_on_canvas%2C_116.5_x_89.3_cm.jpg","genre":"Cubism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/440px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg","genre":"Expressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Egon_Schiele_061.jpg/440px-Egon_Schiele_061.jpg","genre":"Expressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/0/02/El_Greco_View_of_Toledo.jpg/440px-El_Greco_View_of_Toledo.jpg","genre":"Expressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/1/14/1914_Redon_Zyklop_anagoria.JPG/256px-1914_Redon_Zyklop_anagoria.JPG","genre":"Post-Impressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Georges_Seurat_-_A_Sunday_on_La_Grande_Jatte_--_1884_-_Google_Art_Project.jpg/320px-Georges_Seurat_-_A_Sunday_on_La_Grande_Jatte_--_1884_-_Google_Art_Project.jpg","genre":"Post-Impressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Maximilien_Luce_-_%27Montmartre%2C_de_la_rue_Cortot%2C_vue_vers_saint-denis%27%2C_oil_on_canvas_painting%2C_c._1900.jpg/320px-Maximilien_Luce_-_%27Montmartre%2C_de_la_rue_Cortot%2C_vue_vers_saint-denis%27%2C_oil_on_canvas_painting%2C_c._1900.jpg","genre":"Post-Impressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/a/a4/Jean-Paul_Riopelle%2C_Untitled%2C_1953%2C_oil_on_canvas%2C_114_x_145_cm%2C_Mus%C3%A9e_des_Beaux-Arts%2C_Rennes.jpg","genre":"Abstract impressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/4/4a/No._5%2C_1948.jpg","genre":"Abstract impressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/f/f2/Number_17A.jpg","genre":"Abstract impressionism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/thumb/2/2b/The_Elephant_Celebes.jpg/440px-The_Elephant_Celebes.jpg","genre":"Surrealism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/a/ae/Indefinite_Divisibility.jpg","genre":"Surrealism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg","genre":"Surrealism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Orozco_Mural_Omniciencia_1925_Azulejos.jpg/280px-Orozco_Mural_Omniciencia_1925_Azulejos.jpg","genre":"Social Realism "},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/5/55/People-of-Chilmark-Benton-1920-lrg.jpg/280px-People-of-Chilmark-Benton-1920-lrg.jpg","genre":"Social Realism "},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Palacio_de_Bellas_Artes_-_Mural_El_Hombre_in_cruce_de_caminos_Rivera_3.jpg/280px-Palacio_de_Bellas_Artes_-_Mural_El_Hombre_in_cruce_de_caminos_Rivera_3.jpg","genre":"Social Realism "},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Jacopo_Pontormo_004.jpg/460px-Jacopo_Pontormo_004.jpg","genre":"Mannerism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Henry_Howard_Earl_of_Surrey_1546.jpg/460px-Henry_Howard_Earl_of_Surrey_1546.jpg","genre":"Mannerism"},{"statement":"PICTUREhttps://upload.wikimedia.org/wikipedia/en/d/df/Roy_Lichtenstein_Drowning_Girl.jpg","genre":"Pop Art"},{"statement":"PICTUREhttps://uploads3.wikiart.org/images/keith-haring/lucky-strike-1987(1).jpg!PinterestSmall.jpg","genre":"Pop Art"},{"statement":"PICTUREhttps://uploads7.wikiart.org/images/andy-warhol/elvis-presley(1).jpg!PinterestSmall.jpg","genre":"Pop Art"},{"statement":"PICTUREhttps://uploads2.wikiart.org/images/piet-mondrian/composition-in-color-a-1917.jpg!PinterestSmall.jpg","genre":"Neoplasticism"},{"statement":"PICTUREhttps://uploads7.wikiart.org/images/piet-mondrian/tableau-i-1921.jpg!PinterestSmall.jpg","genre":"Neoplasticism"},{"statement":"PICTUREhttps://uploads2.wikiart.org/images/theo-van-doesburg/composition-ix-opus-18-1917-1917.jpg!PinterestSmall.jpg","genre":"Neoplasticism"}];
 //all artists
 var genreArtist = {
-    "Cubism":"Picasso",
-    "Expressionism":"Kandinsky",
-    "Post-Impressionism":"van Gogh",
-    "Abstract impressionism":"Pollack",
-    "Surrealism":"Dali",
-    "Social Realism":"Rivera",
-    "Mannerism":"El Greco",
-    "High Renaissance":"da Vinci",
-    "Pop Art": "Warhol"
+    "Cubism":{artist:"Picasso", name:"Pablo Picasso", country:"Spanish", photo:"https://upload.wikimedia.org/wikipedia/commons/b/b8/Portrait_de_Picasso%2C_1908.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/EU-Spain_%28orthographic_projection%29.svg/480px-EU-Spain_%28orthographic_projection%29.svg.png", bio:"ablo Ruiz Picasso (25 October 1881 – 8 April 1973) was a Spanish painter, sculptor, printmaker, ceramicist, stage designer, poet and playwright who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement, the invention of constructed sculpture, the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and Guernica (1937), a dramatic portrayal of the bombing of Guernica by the German and Italian airforces during the Spanish Civil War."},
+    "Expressionism":{artist:"Kandinsky", name:"", country:"Russian", photo:"https://upload.wikimedia.org/wikipedia/commons/8/8a/Vassily-Kandinsky.jpeg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Russian_Federation_2014_%28orthographic_projection%29_with_Crimea.svg/480px-Russian_Federation_2014_%28orthographic_projection%29_with_Crimea.svg.png", bio:"Wassily Wassilyevich Kandinsky (16 December [O.S. 4 December] 1866 – 13 December 1944) was a Russian painter and art theorist. Kandinsky is generally credited as the pioneer of abstract art.[1] Born in Moscow, Kandinsky spent his childhood in Odessa, where he graduated at Grekov Odessa Art school. He enrolled at the University of Moscow, studying law and economics. Successful in his profession—he was offered a professorship (chair of Roman Law) at the University of Dorpat—Kandinsky began painting studies (life-drawing, sketching and anatomy) at the age of 30."},
+    "Post-Impressionism":{artist:"van Gogh", name:"", country:"", photo:"", map:"", bio:""},
+    "Abstract impressionism":{artist:"Pollack", name:"", country:"", photo:"", map:"", bio:""},
+    "Surrealism":{artist:"Dali", name:"", country:"", photo:"", map:"", bio:""},
+    "Social Realism":{artist:"Rivera", name:"", country:"", photo:"", map:"", bio:""},
+    "Mannerism":{artist:"El Greco", name:"", country:"", photo:"", map:"", bio:""},
+    "High Renaissance":{artist:"da Vinci", name:"", country:"", photo:"", map:"", bio:""},
+    "Pop Art":{artist:"Warhol", name:"", country:"", photo:"", map:"", bio:""}
     };
 
 
@@ -200,14 +204,14 @@ function shuffle(array) {
 }
 
 // adding image questions to the question list
-for(var i = 0; i < 5; i++)
+for(var i = 0; i < totalQuestions; i++)
 {
   var question = {title:"If I Were An Artist, I Would Be...", subtitle:"Choose your favorite artwork. " + "(Step " + (i + 1).toString() + "/5)", options:[]};
-  question.options.push(artgenre[i*5]);
-  question.options.push(artgenre[i*5 + 1]);
-  question.options.push(artgenre[i*5 + 2]);
-  question.options.push(artgenre[i*5 + 3]);
-  question.options.push(artgenre[i*5 + 4]);
+
+  for(var j = 0; j < paintingPerPage; j++)
+  {
+    question.options.push(artgenre[j*5 + paintingPerPage]);
+  }
   questionList.push(question);
 }
 
