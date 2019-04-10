@@ -173,14 +173,30 @@ function nextQuestion()
          }
       }
     if(compare === 3)
+    // a major choice
     {
-      resultArtist = genreArtist[mostFrequent];
+      resultArtist = genreArtist[mostFrequent].artist;
     }
     else
     {
-      resultArtist = genreArtist[mostFrequent];
+      resultArtist = genreArtist[mostFrequent].artist;
     }
+    displayArtistInfo(mostFrequent);
   }
+}
+
+function displayArtistInfo(genre)
+{
+  document.getElementById("subtitle").innerHTML = "You like " + genre + ", your artist is...<br>" +genreArtist[genre].name + ", a(an) " + genreArtist[genre].country + " artist.";
+
+  var photo = document.createElement("img");
+  photo.className = "artistPhoto";
+  photo.setAttribute("src", genreArtist[genre].photo);
+  document.getElementById("content").appendChild(photo);
+  var map = document.createElement("img");
+  map.className = "map";
+  map.setAttribute("src", genreArtist[genre].map);
+  document.getElementById("content").appendChild(map);
 }
 
 // helper function to shuffle the list, so users see new things each time
@@ -210,7 +226,7 @@ for(var i = 0; i < totalQuestions; i++)
 
   for(var j = 0; j < paintingPerPage; j++)
   {
-    question.options.push(artgenre[j*5 + paintingPerPage]);
+    question.options.push(artgenre[i*5 + j]);
   }
   questionList.push(question);
 }
