@@ -202,7 +202,7 @@ function shuffle(array) {
 // adding image questions to the question list
 for(var i = 0; i < 5; i++)
 {
-  var question = {title:"If I Were An Artist, I Would Be...", subtitle:"Choose your favorite artwork. " + "(" + (i + 1).toString() + "/5)", options:[]};
+  var question = {title:"If I Were An Artist, I Would Be...", subtitle:"Choose your favorite artwork. " + "(Step " + (i + 1).toString() + "/5)", options:[]};
   question.options.push(artgenre[i*5]);
   question.options.push(artgenre[i*5 + 1]);
   question.options.push(artgenre[i*5 + 2]);
