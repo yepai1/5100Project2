@@ -5,12 +5,16 @@ simple.data = subset(data, select = c(Object.ID, Title, Culture, Artist.Display.
 
 filtered.data = simple.data %>% filter(str_detect(Classification, "Painting"))
 
-write.csv(filtered.data, file = "cleandata.csv")
+filtered.data.2 = subset(filtered.data, select = c(Title, Artist.Display.Name, Object.End.Date))
+
+filtered.data.2$Museum = "Met"
+
+write.csv(filtered.data.2, file = "cleandata.csv")
 ```
 
 ```{r}
 genrepainting = read.csv("genrepainting.csv")
 genrepainting$statement = paste("PICTURE",genrepainting$statement, sep="")
 text = toJSON(genrepainting)
-text
+hist(filtered.data$Object.End.Date, breaks=2300)
 ```
