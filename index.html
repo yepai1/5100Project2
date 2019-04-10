@@ -119,31 +119,39 @@
       margin-bottom: 20px;
     }
 
+    /* .quiz{
+      align-content: center;
+      max-width: 900px;
+    } */
+
     </style>
 
   </head>
   <body>
+    <div class="quiz">
+        <div id="title" class="title">
+          Multiple-Choice Question 1
+        </div>
 
-    <div id="title" class="title">
-      Multiple-Choice Question 1
+        <div id="subtitle" class="subtitle">
+          This is the description (subtitle) of this question.
+        </div>
+
+        <div id="index">
+        </div>
+
+        <div id="content">
+        </div>
+
+        <div id="operations">
+          <button id="nextButton" class="nextButton disabled" onclick="nextQuestion()"> Next </button>
+          <br>
+          <button id="resetButton" class="resetButton" onClick="document.location.reload(true)"> Start Over </button>
+        </div>
     </div>
 
-    <div id="subtitle" class="subtitle">
-      This is the description (subtitle) of this question.
-    </div>
-
-    <div id="index">
-
-    </div>
-
-    <div id="content">
-
-    </div>
-
-    <div id="operations">
-      <button id="nextButton" class="nextButton disabled" onclick="nextQuestion()"> Next </button>
-      <br>
-      <button id="resetButton" class="resetButton" onClick="document.location.reload(true)"> Start Over </button>
+    <div class="dot-chart">
+      <svg id="artist_dot_plot"></svg>
     </div>
 
     <script>
@@ -337,5 +345,7 @@
       showQuestion(questionList[0]);
 
     </script>
+    <script src="js/quiz.js"></script>
+    <script src="js/timeline.js"></script>
   </body>
 </html>

@@ -1,0 +1,39 @@
+[
+    {
+      "Genre": "Cubism",
+      "Artist": "Picasso"
+    },
+    {
+      "Genre": "Expressionism",
+      "Artist": "Kandinsky"
+    },
+    {
+        "Genre": "Post-Impressionism",
+        "Artist": "van Gogh"
+    },
+    {
+        "Genre": "Abstract expressionism",
+        "Artist": "Pollack"
+    },
+    {
+        "Genre": "Surrealism",
+        "Artist": "Dali"
+    },
+    {
+        "Genre": "Social Realism",
+        "Artist": "Rivera"
+    },
+    {
+        "Genre": "Mannerism",
+        "Artist": "El Greco"
+    },
+    {
+        "Genre": "High Renaissance",
+        "Artist": "da Vinci"
+    },
+    {
+        "Genre": "Pop Art",
+        "Artist": "Warhol"
+    }
+
+]
