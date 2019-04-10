@@ -1,3 +1,4 @@
+met
 ```{r}
 data = read.csv("MetObjects.csv")
 
@@ -7,14 +8,52 @@ filtered.data = simple.data %>% filter(str_detect(Classification, "Painting"))
 
 filtered.data.2 = subset(filtered.data, select = c(Title, Artist.Display.Name, Object.End.Date))
 
+colnames(filtered.data.2) = c("Title", "Artist", "Year")
+
 filtered.data.2$Museum = "Met"
 
-write.csv(filtered.data.2, file = "cleandata.csv")
+filtered.data.2$Title = str_extract(filtered.data.2$Title, "\\|.+")
+
+hist(filtered.data$Object.End.Date, breaks=2300)
 ```
 
+genre painting
 ```{r}
 genrepainting = read.csv("genrepainting.csv")
 genrepainting$statement = paste("PICTURE",genrepainting$statement, sep="")
 text = toJSON(genrepainting)
-hist(filtered.data$Object.End.Date, breaks=2300)
+```
+
+moma
+```{r}
+moma.data = read.csv("moma.csv")
+
+moma.simple.data = subset(moma.data, select = c(Title, Name, Date, Classification))
+
+moma.filtered.data = subset(moma.simple.data, Classification == "Painting" | Classification == "Drawing" | Classification == "Collage")
+
+moma.filtered.data.2 = subset(moma.filtered.data, select = c(Title, Name, Date))
+
+moma.filtered.data.2$Date = as.numeric( sub("\\D*(\\d+).*", "\\1", moma.filtered.data.2$Date) )
+
+moma.filtered.data.2$Date=as.numeric(moma.filtered.data.2$Date)
+
+colnames(moma.filtered.data.2) = c("Title", "Artist", "Year")
+
+moma.filtered.data.2$Museum = "Moma"
+
+moma.filtered.data.2 = subset(moma.filtered.data.2, Year > 1000)
+
+hist(moma.filtered.data.2$Date, breaks=2300)
+```
+
+combining 
+```{r}
+merged = rbind(filtered.data.2, moma.filtered.data.2)
+
+merged <- na.omit(merged)
+
+merged$ID = seq.int(nrow(merged))
+
+write.csv(filtered.data.2, file = "cleandata.csv")
 ```
