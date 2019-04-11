@@ -20,12 +20,14 @@ var artgenre;
 var genreArtist;
 // all genres
 var genres=["Cubism", "Expressionism", "Post-Impressionism", "Abstract impressionism", "Surrealism", "Social Realism", "Mannerism", "High Renaissance", "Pop Art", "Neoplasticism"];
+// scroll flag
+var scrolledFlag = false;
 // genre Queue
 var genreQueue = new Set();
 var genreQueueDict = {};
 
 // THE OLD SCALES BELOW are repalced by d3 scales, but are keeped for debugging
-var fontSizeList = ["7px", "12px", "17px", "22px", "25px", "27px", "29px", "30px", "31px", "32px", "33px", "34px", "35px", "36px", "37px"];
+var fontSizeList = ["10px", "18px", "25px", "30px", "35px", "40px", "43px", "45px", "47px", "49px", "50px", "51px", "52px", "53px", "54px"];
 var fontColorList = ["#321911",  "#59530D",  "#7F8C09", "#7F8C09", "#A6C604", "#A6C604", "#CCFF00", "#CCFF00", "#CCFF00", "#DDFF33", "#DDFF33", "#DDFF33", "#EDFF55", "#EDFF55", "#EDFF55", "#EDFF55"];
 //NEW SCALES
 var fontSizeScale = d3.scaleLinear()
@@ -127,7 +129,11 @@ function optionClicked(optionIndex, optionAnswer)
 {
   currentOption = optionAnswer;
   //auto scroll
-  window.scrollBy(0, 70);
+  if(!scrolledFlag)
+  {
+    window.scrollBy(0, 70);
+    scrolledFlag = true;
+  }
   //reset all options' visuals
   optionIndexList.forEach(function (item, index) {
     document.getElementById(item + "Index").style.color = "#ffffff";
@@ -153,8 +159,9 @@ function optionClicked(optionIndex, optionAnswer)
 function nextQuestion()
 {
   //add to current list
-  window.scrollBy(0, -100);
+  window.scrollBy(0, -150);
   answers.push(currentOption);
+  scrolledFlag = false;
   //add to genre Queue or change display font size
   if(currentQuestion == 0)
   {
@@ -321,7 +328,7 @@ function shuffle(array) {
 // scrolling page function
 function scrollDown()
 {
-  window.scrollBy(0, 200);
+  window.scrollBy(0, 300);
 }
 
 
