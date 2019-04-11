@@ -114,11 +114,13 @@ function optionClicked(optionIndex, optionAnswer)
     document.getElementById(item + "Index").style.backgroundColor = "#5d4037";
     document.getElementById(item + "Content").style.color = "#ffffff";
     document.getElementById(item + "Content").style.backgroundColor = "#5d4037";
+    document.getElementById(item + "Index").style.backgroundImage = "";
   });
 
   //update the clicked option's visuals
   document.getElementById(optionIndex + "Index").style.color = "#000000";
   document.getElementById(optionIndex + "Index").style.backgroundColor = "#a0af22";
+  document.getElementById(optionIndex + "Index").style.backgroundImage = "linear-gradient(#a0af22, #d3d831)";
   document.getElementById(optionIndex + "Content").style.color = "#000000";
   document.getElementById(optionIndex + "Content").style.backgroundColor = "#a0af22";
 
@@ -163,6 +165,7 @@ function nextQuestion()
              mostFrequent = answers[i];
          }
       }
+    console.log(mostFrequent);
     if(compare === 3)
     // a major choice
     {
