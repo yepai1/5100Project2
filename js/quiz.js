@@ -23,7 +23,7 @@ var genres=["Cubism", "Expressionism", "Post-Impressionism", "Abstract impressio
 // genre Queue
 var genreQueue = new Set();
 var genreQueueDict = {};
-var fontSizeList = ["7px", "12px", "17px", "22px", "26px", "29px", "30px", "31px", "32px", "33px", "34px", "35px", "36px", "37px", "38px"];
+var fontSizeList = ["7px", "12px", "17px", "22px", "25px", "27px", "29px", "30px", "31px", "32px", "33px", "34px", "35px", "36px", "37px"];
 var fontColorList = ["#321911",  "#59530D",  "#7F8C09", "#7F8C09", "#A6C604", "#A6C604", "#CCFF00", "#CCFF00", "#CCFF00", "#DDFF33", "#DDFF33", "#DDFF33", "#EDFF55", "#EDFF55", "#EDFF55", "#EDFF55"];
 
 //add a option for a question
@@ -258,17 +258,17 @@ function displayArtistInfo(genre)
   genreDisplay = document.createElement("p");
   genreDisplay.className = "smallwords";
   genreDisplay.innerHTML = "Based on your genre , your artist is..."
-  document.getElementById("subtitle").appendChild(genreDisplay);
+  document.getElementById("resultTitle").appendChild(genreDisplay);
 
   artistDisplay = document.createElement("p");
   artistDisplay.className = "bigwords";
   artistDisplay.innerHTML = genreArtist[genre].name
-  document.getElementById("subtitle").appendChild(artistDisplay);
+  document.getElementById("resultTitle").appendChild(artistDisplay);
 
   countryDisplay = document.createElement("p");
   countryDisplay.className = "smallwords";
   countryDisplay.innerHTML = "A(An) " + genreArtist[genre].country + " artist.";
-  document.getElementById("subtitle").appendChild(countryDisplay);
+  document.getElementById("resultTitle").appendChild(countryDisplay);
 
   var photo = document.createElement("img");
   photo.className = "artistPhoto";
