@@ -1,9 +1,11 @@
 // CODE FOR BINNING AND GENERATING CIRCLES WAS ADAPTED FROM https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
+
+
 let svg = d3.select("#artist_dot_plot");
 
 const margin = {top: 10, right: 30, bottom: 30, left: 30},
-      width = 5000
-      height = 700 - margin.top - margin.bottom;
+      width = 900
+      height = 600 - margin.top - margin.bottom;
 
 var allYears = [];
 var dateOrderedList = [];
@@ -21,80 +23,104 @@ d3.csv(csv).then( function(data) {
         // allYears.push(parseInt(d.Year));
     });
 
-    const yearMin = d3.min(data, d => d.Year);
+    // const yearMin = d3.min(data, d => d.Year);
+    const yearMin = 1000;
     const yearMax = 2019;
-    var nbins = 500;
 
-    const svg = d3.select(".dot-chart")
-    .append("svg")
+    // brushed chart
+    const svg = d3.select(".dot-chart").append("svg")
+        .attr("class", "brushed-chart")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-        .attr("transform",
-                `translate(${margin.left}, ${margin.top})`);
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    
+    const miniSvg = d3.select(".dot-chart").append("svg")
+        .attr("class", "mini-chart")
+        .attr("width", 800)
+        .attr("height", 75)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, -500)`);
 
-    var x=d3.scaleLinear()
+
+    var x_scale1 = d3.scaleLinear()
         .range([0, width])
         .domain([yearMin, yearMax]); 
 
-    let shuffledata = d3.shuffle(data)
-        .slice(0, 15000);
+    var x_scale2 = d3.scaleLinear()
+        .range([0, width])
+        .domain([1900, 2000]); 
 
-    const histogram = d3.histogram()
-        .domain(x.domain())
-        .thresholds(x.ticks(nbins))
-        .value(function(d) { return d.Year;} )
 
-    const bins = histogram(shuffledata);
+    // draw mini chart
+    drawChart(x_scale1, miniSvg, 3000, "", .2);
+    drawChart(x_scale2, svg, 500, d3.format("d"), 3);
 
-    console.log(bins);
+    var brush = d3.brushX()
+        .extent([[50, 0], [width, 75]])
+        .on("brush end", brushed);
 
-    let binContainer = svg.selectAll(".gBin")
-        .data(bins);
+    d3.selectAll(".mini-chart").append("g")
+        .attr("class", "brush")
+        .call(brush)
+        .selectAll("rect")
+        .attr("y", 0)
+        .attr("height", 75);
 
-    let binContainerEnter = binContainer.enter()
-        .append("g")
-            .attr("class", "gBin")
-            .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+    function brushed(){
+        console.log("brushed");
+    }
 
-    //need to populate the bin containers with data the first time
-    binContainerEnter.selectAll("circle")
-        .data(d => d.map((p, i) => {
-          return {idx: i,
-                  name: p.Title,
-                  artist: p.Artist,
-                  value: p.Value,
-                  radius: (x(d.x1)-x(d.x0))/2
-                }
-        }))
-        .enter()
-        .append("circle")
-            .attr("class", "enter")
-            .attr("cx", 0) 
-            .attr("cy", function(d) {
-                return - d.idx * 2 * d.radius - d.radius; })
-            .attr("r", 0)
-            // .on("mouseover", tooltipOn)
-            // .on("mouseout", tooltipOff)
-            .attr("r", function(d) {
-            return (d.length==0) ? 0 : d.radius; })
+
     
-        binContainerEnter.merge(binContainer)
-            .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
-    
-        //enter/update/exit for circles, inside each container
-        // let dots = binContainer.selectAll("circle")
-        //     .data(d => d.map((p, i) => {
-        //     return {idx: i,
-        //             name: p.Name,
-        //             value: p.Value,
-        //             radius: (x(d.x1)-x(d.x0))/2
-        //             }
-        //     }))
-        svg.append("g")
-            .attr("class", "axis axis--x")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+    // draw chart based on scale values & svg elt
+    function drawChart (x, svg, nbins, format, radius_val){
+
+    // histogram use and adding circles adapted from: https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
+
+        const histogram = d3.histogram()
+            .domain(x.domain())
+            .thresholds(x.ticks(nbins))
+            .value(function(d) { return d.Year;} )
+
+        const bins = histogram(data);
+
+        let binContainer = svg.selectAll(".gBin")
+            .data(bins);
+
+        let binContainerEnter = binContainer.enter()
+            .append("g")
+                .attr("class", "gBin")
+                .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+
+        binContainerEnter.selectAll("circle")
+            .data(d => d.map((p, i) => {
+                return {idx: i,
+                    name: p.Title,
+                    artist: p.Artist,
+                    value: p.Value,
+                    radius: radius_val
+                    }
+                }))
+            .enter()
+            .append("circle")
+                .attr("class", "enter")
+                .attr("cx", 0) 
+                .attr("cy", function(d) {
+                    return - d.idx * 2 * d.radius - d.radius; })
+                .attr("r", 0)
+                // .on("mouseover", tooltipOn)
+                // .on("mouseout", tooltipOff)
+                .attr("r", function(d) {
+                return (d.length==0) ? 0 : d.radius; })
+            binContainerEnter.merge(binContainer)
+                .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+        
+            svg.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).tickSize(0).tickFormat(format));
+        }
 
 });
 
