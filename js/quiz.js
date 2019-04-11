@@ -18,6 +18,13 @@ var paintingPerPage = 5;
 var artgenre;
 // all artists
 var genreArtist;
+// all genres
+var genres=["Cubism", "Expressionism", "Post-Impressionism", "Abstract impressionism", "Surrealism", "Social Realism", "Mannerism", "High Renaissance", "Pop Art", "Neoplasticism"];
+// genre Queue
+var genreQueue = new Set();
+var genreQueueDict = {};
+var fontSizeList = ["7px", "12px", "17px", "22px", "26px", "29px", "30px", "31px", "32px", "33px", "34px", "35px", "36px", "37px", "38px"];
+var fontColorList = ["#000000",  "#321911",  "#59530D",  "#7F8C09", "#7F8C09", "#A6C604", "#A6C604", "#CCFF00", "#CCFF00", "#CCFF00", "#DDFF33", "#DDFF33", "#DDFF33", "#EDFF55", "#EDFF55", "#EDFF55"];
 
 //add a option for a question
 function addOptionButton(index, text, answer)
@@ -130,7 +137,54 @@ function optionClicked(optionIndex, optionAnswer)
 
 function nextQuestion()
 {
+  //add to current list
   answers.push(currentOption);
+  //add to genre Queue or change display font size
+  if(currentQuestion == 0)
+  {
+    document.getElementById("genreQueue").style.display = "flex";
+    document.getElementById("hint").innerHTML = "It seems that you like:";
+  }
+  if(genreQueue.has(currentOption))
+  {
+      genreQueueDict[currentOption] += (Math.floor(Math.random()*2) + 2);
+  }
+  else
+  {
+    // new block
+      genreQueue.add(currentOption);
+      genreQueueDict[currentOption] = 1;
+      genreBlock = document.createElement("p");
+      genreBlock.className = "genreBlock";
+      genreBlock.innerHTML = currentOption;
+      genreBlock.setAttribute("id", currentOption + "Block");
+      document.getElementById("genreQueue").appendChild(genreBlock);
+  }
+  document.getElementById(currentOption + "Block").style.color = fontColorList[genreQueueDict[currentOption]];
+  document.getElementById(currentOption + "Block").style.fontSize = fontSizeList[genreQueueDict[currentOption]];
+
+  for(var rep = 1; rep <2; rep++)
+  {
+    var temp = genres[Math.floor(Math.random()*11)];
+    //temp use for aesthics
+    if(genreQueue.has(temp))
+    {
+        genreQueueDict[temp] += 1;
+    }
+    else
+    {
+        genreQueue.add(temp);
+        genreQueueDict[temp] = 0;
+        genreBlock = document.createElement("p");
+        genreBlock.className = "genreBlock";
+        genreBlock.innerHTML = temp;
+        genreBlock.setAttribute("id", temp + "Block");
+        document.getElementById("genreQueue").appendChild(genreBlock);
+    }
+    document.getElementById(temp + "Block").style.color = fontColorList[genreQueueDict[temp]];
+    document.getElementById(temp + "Block").style.fontSize = fontSizeList[genreQueueDict[temp]];
+  }
+
   //clear current options
   document.getElementById("index").innerHTML = "";
   document.getElementById("content").innerHTML = "";
@@ -163,7 +217,6 @@ function nextQuestion()
              mostFrequent = answers[i];
          }
       }
-    console.log(mostFrequent);
     if(compare === 3)
     // a major choice
     {
@@ -183,6 +236,9 @@ function displayArtistInfo(genre)
   document.getElementById("subtitle").innerHTML = "";
   document.getElementById("nextButton").style.display = "none";
 
+  //displaying and updating genre info
+  document.getElementById("genreQueue")
+
   //add a scolling button
   var scrollButton = document.createElement("button");
   scrollButton.innerHTML = "\u25BC Scroll to see your artist in the museums \u25BC";
@@ -194,7 +250,7 @@ function displayArtistInfo(genre)
   // display the titles
   genreDisplay = document.createElement("p");
   genreDisplay.className = "smallwords";
-  genreDisplay.innerHTML = "You like <b>" + genre + "</b>, your artist is..."
+  genreDisplay.innerHTML = "Based on your genre , your artist is..."
   document.getElementById("subtitle").appendChild(genreDisplay);
 
   artistDisplay = document.createElement("p");
