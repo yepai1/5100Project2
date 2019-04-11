@@ -19,8 +19,6 @@ var artgenre;
 // all artists
 var genreArtist;
 
-
-
 //add a option for a question
 function addOptionButton(index, text, answer)
 {
