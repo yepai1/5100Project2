@@ -259,12 +259,10 @@ function scrollDown()
 const requestData = async () => {
   artgenre = await d3.json("datasets/paintinggenre.json");
   genreArtist = await d3.json("datasets/genre_artist.json");
+  artgenre = shuffle(artgenre);
 // adding image questions to the question list
   for(var i = 0; i < totalQuestions; i++)
   {
-
-    artgenre = shuffle(artgenre);
-
     var question = {title:"If I Were An Artist, I Would Be...", subtitle:"Choose your favorite artwork. " + "(Step " + (i + 1).toString() + "/5)", options:[]};
 
     for(var j = 0; j < paintingPerPage; j++)
