@@ -312,7 +312,7 @@ function shuffle(array) {
 // scrolling page function
 function scrollDown()
 {
-  window.scrollBy(0, 100);
+  window.scrollBy(0, 200);
 }
 
 
