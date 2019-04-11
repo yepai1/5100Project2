@@ -3,15 +3,17 @@
 
 let svg = d3.select("#artist_dot_plot");
 
+// toggle visibility of quiz 
+
+
 const margin = {top: 10, right: 30, bottom: 30, left: 30},
       width = 900
       height = 600 - margin.top - margin.bottom;
 
 var metPaintings = [];
 var momaPaintings = [];
-
+var artist_selection = "Picasso";
 var csv = "../datasets/cleandata.csv";
-
 
 d3.csv(csv).then(function(data) {
     data.forEach(function(d) {
@@ -56,7 +58,7 @@ d3.csv(csv).then(function(data) {
 
     // draw mini chart @ call update fuction for brushed chart
     drawChart(x_scale1, miniSvg, 3000, "", .2, data);
-    updateDotChart(1575, 1600);
+    updateDotChart(1920, 1945);
 
     d3.selectAll(".mini-chart").append("g")
         .attr("class", "brush")
@@ -82,7 +84,9 @@ d3.csv(csv).then(function(data) {
     // function for drawing graphs
     // scale, svg elt, number of bins, format of ticks, circle radius, data set, class
     function drawChart (x, svg, nbins, format, radius_val, data){
- // histogram use and adding circles in this section are adapted from: https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
+
+
+// histogram use and adding circles in this section are adapted from: https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
 
         const histogram = d3.histogram()
             .domain(x.domain())
@@ -112,12 +116,11 @@ d3.csv(csv).then(function(data) {
             .enter()
             .append("circle")
                 .attr("class", function(d){return d.museum})
-                .attr("cx", function(d){ if (d.idx % 4 != 0){var x_move =d.idx%4; return d.radius * 2 * x_move + 2};}) 
+                .attr("id", function(d){var this_artist = "" + d.artist + ""; if(this_artist.includes(artist_selection)){console.log("found one");return "personal_artist"}else{return "normal"}})
+                .attr("cx", function(d){ if (d.idx % 4 != 0){var x_move =d.idx%4; return d.radius * 2 * x_move};}) 
                 .attr("cy", function(d) {var move = d.idx / 4; if (d.idx%4 === 0){var change = d.radius}else if(d.idx%4 === 1){change = d.radius * .5}else if(d.idx%4 === 2){change = 0}else if(d.idx%4 === 3){change = d.radius * -.5}; 
                     return - move * 2 * d.radius- change;})
                 .attr("r", 0)
-                // .on("mouseover", tooltipOn)
-                // .on("mouseout", tooltipOff)
                 .attr("r", function(d) {
                 return (d.length==0) ? 0 : d.radius; })
             binContainerEnter.merge(binContainer)
