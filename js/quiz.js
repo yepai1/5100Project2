@@ -106,13 +106,19 @@ function showQuestion(question)
       addOptionButton(defaultIndex[index], item.statement, item.answer);
     }
   });
+  // first question, reset te page
+  if(currentQuestion == 0)
+  {
+    window.scrollBy(0, -100);
+  }
 }
 
 // an option is clicked
 function optionClicked(optionIndex, optionAnswer)
 {
   currentOption = optionAnswer;
-
+  //auto scroll
+  window.scrollBy(0, 70);
   //reset all options' visuals
   optionIndexList.forEach(function (item, index) {
     document.getElementById(item + "Index").style.color = "#ffffff";
@@ -138,6 +144,7 @@ function optionClicked(optionIndex, optionAnswer)
 function nextQuestion()
 {
   //add to current list
+  window.scrollBy(0, -100);
   answers.push(currentOption);
   //add to genre Queue or change display font size
   if(currentQuestion == 0)
@@ -318,7 +325,6 @@ const requestData = async () => {
   for(var i = 0; i < totalQuestions; i++)
   {
     var question = {title:"If I Were An Artist, I Would Be...", subtitle:"Choose your favorite artwork. " + "(Step " + (i + 1).toString() + "/5)", options:[]};
-
     for(var j = 0; j < paintingPerPage; j++)
     {
       question.options.push(artgenre[i*5 + j]);
