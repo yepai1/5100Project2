@@ -23,8 +23,17 @@ var genres=["Cubism", "Expressionism", "Post-Impressionism", "Abstract impressio
 // genre Queue
 var genreQueue = new Set();
 var genreQueueDict = {};
+
+// THE OLD SCALES BELOW are repalced by d3 scales, but are keeped for debugging
 var fontSizeList = ["7px", "12px", "17px", "22px", "25px", "27px", "29px", "30px", "31px", "32px", "33px", "34px", "35px", "36px", "37px"];
 var fontColorList = ["#321911",  "#59530D",  "#7F8C09", "#7F8C09", "#A6C604", "#A6C604", "#CCFF00", "#CCFF00", "#CCFF00", "#DDFF33", "#DDFF33", "#DDFF33", "#EDFF55", "#EDFF55", "#EDFF55", "#EDFF55"];
+//NEW SCALES
+var fontSizeScale = d3.scaleLinear()
+                      .range(7, 37)
+                      .domain(0, 10);
+var fontColorScale = d3.scaleLinear()
+                      .range(d3.color("#321911"), d3.color("#EDFF55"))
+                      .domain(0, 10);
 
 //add a option for a question
 function addOptionButton(index, text, answer)
