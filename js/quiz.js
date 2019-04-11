@@ -192,11 +192,19 @@ function displayArtistInfo(genre)
   var photo = document.createElement("img");
   photo.className = "artistPhoto";
   photo.setAttribute("src", genreArtist[genre].photo);
+  photo.setAttribute("align", "center");
   document.getElementById("content").appendChild(photo);
+
   var map = document.createElement("img");
   map.className = "map";
   map.setAttribute("src", genreArtist[genre].map);
+  map.setAttribute("align", "center");
   document.getElementById("content").appendChild(map);
+
+  var bio = document.createElement("p");
+  bio.className = "bio";
+  bio.innerHTML = genreArtist[genre].bio;
+  document.getElementById("content").appendChild(bio);
 }
 
 // helper function to shuffle the list, so users see new things each time
