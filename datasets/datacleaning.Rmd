@@ -47,9 +47,9 @@ merged = rbind(filtered.data.2, moma.filtered.data.2)
 
 merged <- na.omit(merged)
 
-merged$ID = seq.int(nrow(merged))
+merged$Id = seq.int(nrow(merged))
 
-write.csv(filtered.data.2, file = "cleandata.csv")
+write.csv(merged, file = "cleandata.csv")
 ```
 
 genre painting
