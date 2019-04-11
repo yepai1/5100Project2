@@ -110,17 +110,87 @@ var artgenre = [
   ];
 //all artists
 var genreArtist = {
-    "Cubism":{artist:"Picasso", name:"Pablo Picasso", country:"Spanish", photo:"https://upload.wikimedia.org/wikipedia/commons/b/b8/Portrait_de_Picasso%2C_1908.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/EU-Spain_%28orthographic_projection%29.svg/480px-EU-Spain_%28orthographic_projection%29.svg.png", bio:"Pablo Ruiz Picasso (25 October 1881 – 8 April 1973) was a Spanish painter, sculptor, printmaker, ceramicist, stage designer, poet and playwright who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement, the invention of constructed sculpture, the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and Guernica (1937), a dramatic portrayal of the bombing of Guernica by the German and Italian airforces during the Spanish Civil War."},
-    "Expressionism":{artist:"Kandinsky", name:"Wassily Kandinsky", country:"Russian", photo:"https://upload.wikimedia.org/wikipedia/commons/8/8a/Vassily-Kandinsky.jpeg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Russian_Federation_2014_%28orthographic_projection%29_with_Crimea.svg/480px-Russian_Federation_2014_%28orthographic_projection%29_with_Crimea.svg.png", bio:"Wassily Wassilyevich Kandinsky (16 December [O.S. 4 December] 1866 – 13 December 1944) was a Russian painter and art theorist. Kandinsky is generally credited as the pioneer of abstract art. Born in Moscow, Kandinsky spent his childhood in Odessa, where he graduated at Grekov Odessa Art school. He enrolled at the University of Moscow, studying law and economics. Successful in his profession—he was offered a professorship (chair of Roman Law) at the University of Dorpat—Kandinsky began painting studies (life-drawing, sketching and anatomy) at the age of 30."},
-    "Post-Impressionism":{artist:"van Gogh", name:"Vincent van Gogh", country:"Dutch", photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg/800px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/EU-Netherlands.svg/1024px-EU-Netherlands.svg.png", bio:"Vincent Willem van Gogh (30 March 1853 – 29 July 1890) was a Dutch post-impressionist painter who is among the most famous and influential figures in the history of Western art. In just over a decade he created about 2,100 artworks, including around 860 oil paintings, most of them in the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold colours and dramatic, impulsive and expressive brushwork that contributed to the foundations of modern art. However, he was not commercially successful, and his suicide at 37 followed years of mental illness and poverty."},
-    "Abstract impressionism":{artist:"Pollack", name:"Jackson Pollock", country:"American", photo:"https://upload.wikimedia.org/wikipedia/en/4/42/Namuth_-_Pollock.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/USA_orthographic.svg/480px-USA_orthographic.svg.png", bio:"Paul Jackson Pollock (January 28, 1912 – August 11, 1956) was an American painter and a major figure in the abstract expressionist movement. He was widely noticed for his technique of pouring or splashing liquid household paint on to a horizontal surface (‘drip technique’), enabling him to view and paint his canvases from all angles. It was also called ‘action painting’, since he used the force of his whole body to paint, often in a frenetic dancing style. This extreme form of abstraction divided the critics: some praised the immediacy and fluency of the creation, while others derided the random effects. In 2016, Pollock's painting titled Number 17A was reported to have fetched US$200 million in a private purchase."},
-    "Surrealism":{artist:"Dali", name:"Salvador Dalí", country:"Spanish", photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Salvador_Dal%C3%AD_1939.jpg/800px-Salvador_Dal%C3%AD_1939.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/EU-Spain_%28orthographic_projection%29.svg/480px-EU-Spain_%28orthographic_projection%29.svg.png", bio:"Salvador Domingo Felipe Jacinto Dalí i Domènech, 1st Marquis of Dalí de Púbol (11 May 1904 – 23 January 1989), known professionally as Salvador Dalí, was a prominent Spanish surrealist born in Figueres, Catalonia, Spain. Dalí was a skilled draftsman, best known for the striking and bizarre images in his surrealist work. His painterly skills are often attributed to the influence of Renaissance masters. His best-known work, The Persistence of Memory, was completed in August 1931. Dalí's expansive artistic repertoire included film, sculpture, and photography, at times in collaboration with a range of artists in a variety of media."},
-    "Social Realism":{artist:"Rivera", name:"Diego Rivera", country:"Mexican", photo:"https://upload.wikimedia.org/wikipedia/commons/d/d9/Diego_Rivera%2C_1910.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/MEX_orthographic.svg/480px-MEX_orthographic.svg.png", bio:"Diego María de la Concepción Juan Nepomuceno Estanislao de la Rivera y Barrientos Acosta y Rodríguez, known as Diego Rivera (December 8, 1886 – November 24, 1957) was a prominent Mexican painter. His large frescoes helped establish the Mexican mural movement in Mexican art. Between 1922 and 1953, Rivera painted murals in, among other places, Mexico City, Chapingo, Cuernavaca, San Francisco, Detroit, and New York City. In 1931, a retrospective exhibition of his works was held at the Museum of Modern Art in New York. Rivera had a volatile marriage with fellow Mexican artist Frida Kahlo."},
-    "Mannerism":{artist:"El Greco", name:"Doménikos Theotokópoulos", country:"Kingdom of Candia (today part of Greece)", photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/El_Greco_-_Portrait_of_a_Man_-_WGA10554.jpg/800px-El_Greco_-_Portrait_of_a_Man_-_WGA10554.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/EU-Greece.svg/571px-EU-Greece.svg.png", bio:"Doménikos Theotokópoulos (October 1541 – 7 April 1614), most widely known as El Greco (\"The Greek\"), was a painter, sculptor and architect of the Spanish Renaissance. \"El Greco\" was a nickname,[a][b] a reference to his Greek origin, and the artist normally signed his paintings with his full birth name in Greek letters, Δομήνικος Θεοτοκόπουλος, Doménikos Theotokópoulos, often adding the word Κρής Krēs, Cretan."},
-    "High Renaissance":{artist:"da Vinci", name:"Leonardo da Vinci", country:"Italian", photo:"https://upload.wikimedia.org/wikipedia/commons/f/f7/Francesco_Melzi_-_Portrait_of_Leonardo_-_WGA14795.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/EU-Italy_%28orthographic_projection%29.svg/480px-EU-Italy_%28orthographic_projection%29.svg.png", bio:"Leonardo di ser Piero da Vinci (15 April 1452 – 2 May 1519), more commonly Leonardo da Vinci or simply Leonardo, was an Italian polymath of the Renaissance whose areas of interest included invention, drawing, painting, sculpting, architecture, science, music, mathematics, engineering, literature, anatomy, geology, astronomy, botany, writing, history, and cartography. He has been variously called the father of palaeontology, ichnology, and architecture, and he is widely considered one of the greatest painters of all time. Sometimes credited with the inventions of the parachute, helicopter, and tank,he epitomised the Renaissance humanist ideal."},
-    "Pop Art":{artist:"Warhol", name:"Andy Warhol", country:"American", photo:"https://upload.wikimedia.org/wikipedia/commons/4/42/Andy_Warhol_1975.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/USA_orthographic.svg/480px-USA_orthographic.svg.png", bio:"Andy Warhol (August 6, 1928 – February 22, 1987) was an American artist, director and producer who was a leading figure in the visual art movement known as pop art. His works explore the relationship between artistic expression, celebrity culture, and advertising that flourished by the 1960s, and span a variety of media, including painting, silkscreening, photography, film, and sculpture. Some of his best known works include the silkscreen paintings Campbell's Soup Cans (1962) and Marilyn Diptych (1962), the experimental film Chelsea Girls (1966), and the multimedia events known as the Exploding Plastic Inevitable (1966–67)."},
-    "Neoplasticism":{artist:"Mondrian", name:"Piet Mondrian", country:"American", photo:"https://upload.wikimedia.org/wikipedia/commons/8/83/Piet_Mondriaan.jpg", map:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/USA_orthographic.svg/480px-USA_orthographic.svg.png", bio:"Pieter Cornelis Mondriaan, after 1906 Piet Mondrian (7 March 1872 – 1 February 1944), was a Dutch painter and theoretician who is regarded as one of the greatest artists of the 20th century. He is known for being one of the pioneers of 20th century abstract art, as he changed his artistic direction from figurative painting to an increasingly abstract style, until he reached a point where his artistic vocabulary was reduced to simple geometric elements."}
-    };
+  "Cubism": {
+    artist: "Picasso",
+    name: "Pablo Picasso",
+    country: "Spanish",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Portrait_de_Picasso%2C_1908.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/EU-Spain_%28orthographic_projection%29.svg/480px-EU-Spain_%28orthographic_projection%29.svg.png",
+    bio: "Pablo Ruiz Picasso (25 October 1881 – 8 April 1973) was a Spanish painter, sculptor, printmaker, ceramicist, stage designer, poet and playwright who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement, the invention of constructed sculpture, the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and Guernica (1937), a dramatic portrayal of the bombing of Guernica by the German and Italian airforces during the Spanish Civil War."
+  },
+  "Expressionism": {
+    artist: "Kandinsky",
+    name: "Wassily Kandinsky",
+    country: "Russian",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Vassily-Kandinsky.jpeg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Russian_Federation_2014_%28orthographic_projection%29_with_Crimea.svg/480px-Russian_Federation_2014_%28orthographic_projection%29_with_Crimea.svg.png",
+    bio: "Wassily Wassilyevich Kandinsky (16 December [O.S. 4 December] 1866 – 13 December 1944) was a Russian painter and art theorist. Kandinsky is generally credited as the pioneer of abstract art. Born in Moscow, Kandinsky spent his childhood in Odessa, where he graduated at Grekov Odessa Art school. He enrolled at the University of Moscow, studying law and economics. Successful in his profession—he was offered a professorship (chair of Roman Law) at the University of Dorpat—Kandinsky began painting studies (life-drawing, sketching and anatomy) at the age of 30."
+  },
+  "Post-Impressionism": {
+    artist: "van Gogh",
+    name: "Vincent van Gogh",
+    country: "Dutch",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg/800px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/EU-Netherlands.svg/1024px-EU-Netherlands.svg.png",
+    bio: "Vincent Willem van Gogh (30 March 1853 – 29 July 1890) was a Dutch post-impressionist painter who is among the most famous and influential figures in the history of Western art. In just over a decade he created about 2,100 artworks, including around 860 oil paintings, most of them in the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold colours and dramatic, impulsive and expressive brushwork that contributed to the foundations of modern art. However, he was not commercially successful, and his suicide at 37 followed years of mental illness and poverty."
+  },
+  "Abstract impressionism": {
+    artist: "Pollack",
+    name: "Jackson Pollock",
+    country: "American",
+    photo: "https://upload.wikimedia.org/wikipedia/en/4/42/Namuth_-_Pollock.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/USA_orthographic.svg/480px-USA_orthographic.svg.png",
+    bio: "Paul Jackson Pollock (January 28, 1912 – August 11, 1956) was an American painter and a major figure in the abstract expressionist movement. He was widely noticed for his technique of pouring or splashing liquid household paint on to a horizontal surface (‘drip technique’), enabling him to view and paint his canvases from all angles. It was also called ‘action painting’, since he used the force of his whole body to paint, often in a frenetic dancing style. This extreme form of abstraction divided the critics: some praised the immediacy and fluency of the creation, while others derided the random effects. In 2016, Pollock's painting titled Number 17A was reported to have fetched US$200 million in a private purchase."
+  },
+  "Surrealism": {
+    artist: "Dali",
+    name: "Salvador Dalí",
+    country: "Spanish",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Salvador_Dal%C3%AD_1939.jpg/800px-Salvador_Dal%C3%AD_1939.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/EU-Spain_%28orthographic_projection%29.svg/480px-EU-Spain_%28orthographic_projection%29.svg.png",
+    bio: "Salvador Domingo Felipe Jacinto Dalí i Domènech, 1st Marquis of Dalí de Púbol (11 May 1904 – 23 January 1989), known professionally as Salvador Dalí, was a prominent Spanish surrealist born in Figueres, Catalonia, Spain. Dalí was a skilled draftsman, best known for the striking and bizarre images in his surrealist work. His painterly skills are often attributed to the influence of Renaissance masters. His best-known work, The Persistence of Memory, was completed in August 1931. Dalí's expansive artistic repertoire included film, sculpture, and photography, at times in collaboration with a range of artists in a variety of media."
+  },
+  "Social Realism": {
+    artist: "Rivera",
+    name: "Diego Rivera",
+    country: "Mexican",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Diego_Rivera%2C_1910.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/MEX_orthographic.svg/480px-MEX_orthographic.svg.png",
+    bio: "Diego María de la Concepción Juan Nepomuceno Estanislao de la Rivera y Barrientos Acosta y Rodríguez, known as Diego Rivera (December 8, 1886 – November 24, 1957) was a prominent Mexican painter. His large frescoes helped establish the Mexican mural movement in Mexican art. Between 1922 and 1953, Rivera painted murals in, among other places, Mexico City, Chapingo, Cuernavaca, San Francisco, Detroit, and New York City. In 1931, a retrospective exhibition of his works was held at the Museum of Modern Art in New York. Rivera had a volatile marriage with fellow Mexican artist Frida Kahlo."
+  },
+  "Mannerism": {
+    artist: "El Greco",
+    name: "Doménikos Theotokópoulos",
+    country: "Kingdom of Candia (today part of Greece)",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/El_Greco_-_Portrait_of_a_Man_-_WGA10554.jpg/800px-El_Greco_-_Portrait_of_a_Man_-_WGA10554.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/EU-Greece.svg/571px-EU-Greece.svg.png",
+    bio: "Doménikos Theotokópoulos (October 1541 – 7 April 1614), most widely known as El Greco (\"The Greek\"), was a painter, sculptor and architect of the Spanish Renaissance. \"El Greco\" was a nickname,[a][b] a reference to his Greek origin, and the artist normally signed his paintings with his full birth name in Greek letters, Δομήνικος Θεοτοκόπουλος, Doménikos Theotokópoulos, often adding the word Κρής Krēs, Cretan."
+  },
+  "High Renaissance": {
+    artist: "da Vinci",
+    name: "Leonardo da Vinci",
+    country: "Italian",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Francesco_Melzi_-_Portrait_of_Leonardo_-_WGA14795.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/EU-Italy_%28orthographic_projection%29.svg/480px-EU-Italy_%28orthographic_projection%29.svg.png",
+    bio: "Leonardo di ser Piero da Vinci (15 April 1452 – 2 May 1519), more commonly Leonardo da Vinci or simply Leonardo, was an Italian polymath of the Renaissance whose areas of interest included invention, drawing, painting, sculpting, architecture, science, music, mathematics, engineering, literature, anatomy, geology, astronomy, botany, writing, history, and cartography. He has been variously called the father of palaeontology, ichnology, and architecture, and he is widely considered one of the greatest painters of all time. Sometimes credited with the inventions of the parachute, helicopter, and tank,he epitomised the Renaissance humanist ideal."
+  },
+  "Pop Art": {
+    artist: "Warhol",
+    name: "Andy Warhol",
+    country: "American",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Andy_Warhol_1975.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/USA_orthographic.svg/480px-USA_orthographic.svg.png",
+    bio: "Andy Warhol (August 6, 1928 – February 22, 1987) was an American artist, director and producer who was a leading figure in the visual art movement known as pop art. His works explore the relationship between artistic expression, celebrity culture, and advertising that flourished by the 1960s, and span a variety of media, including painting, silkscreening, photography, film, and sculpture. Some of his best known works include the silkscreen paintings Campbell's Soup Cans (1962) and Marilyn Diptych (1962), the experimental film Chelsea Girls (1966), and the multimedia events known as the Exploding Plastic Inevitable (1966–67)."
+  },
+  "Neoplasticism": {
+    artist: "Mondrian",
+    name: "Piet Mondrian",
+    country: "American",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/8/83/Piet_Mondriaan.jpg",
+    map: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/USA_orthographic.svg/480px-USA_orthographic.svg.png",
+    bio: "Pieter Cornelis Mondriaan, after 1906 Piet Mondrian (7 March 1872 – 1 February 1944), was a Dutch painter and theoretician who is regarded as one of the greatest artists of the 20th century. He is known for being one of the pioneers of 20th century abstract art, as he changed his artistic direction from figurative painting to an increasingly abstract style, until he reached a point where his artistic vocabulary was reduced to simple geometric elements."
+  }
+};
 
 
 //add a option for a question
@@ -286,7 +356,7 @@ function displayArtistInfo(genre)
 
   //add a scolling button
   var scrollButton = document.createElement("button");
-  scrollButton.innerHTML = "\u25BC Scorll to see your artist in the museums \u25BC";
+  scrollButton.innerHTML = "\u25BC Scroll to see your artist in the museums \u25BC";
   scrollButton.className = "scrollButton";
   scrollButton.setAttribute("id", "scrollButton");
   scrollButton.setAttribute("onclick", "scrollDown()");
