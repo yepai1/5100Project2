@@ -32,12 +32,12 @@ d3.csv(csv).then( function(data) {
         .attr("class", "brushed-chart")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-        .append("g")
+        .append("g").attr("class", "dotElts")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
     
     const miniSvg = d3.select(".dot-chart").append("svg")
         .attr("class", "mini-chart")
-        .attr("width", 800)
+        .attr("width", 900)
         .attr("height", 75)
         .append("g")
         .attr("transform", `translate(${margin.left}, -500)`);
@@ -47,30 +47,36 @@ d3.csv(csv).then( function(data) {
         .range([0, width])
         .domain([yearMin, yearMax]); 
 
-    var x_scale2 = d3.scaleLinear()
-        .range([0, width])
-        .domain([1900, 2000]); 
-
+    // reverse scale for brushing 
+    var brushScale = d3.scaleLinear()
+        .domain([0, width])
+        .range([yearMin, yearMax]); 
 
     // draw mini chart
     drawChart(x_scale1, miniSvg, 3000, "", .2);
-    drawChart(x_scale2, svg, 500, d3.format("d"), 3);
-
-    var brush = d3.brushX()
-        .extent([[50, 0], [width, 75]])
-        .on("brush end", brushed);
+    // drawChart(x_scale2, svg, 500, d3.format("d"), 3);
+    // to start
+    updateDotChart(1500, 1600);
 
     d3.selectAll(".mini-chart").append("g")
         .attr("class", "brush")
-        .call(brush)
-        .selectAll("rect")
-        .attr("y", 0)
-        .attr("height", 75);
+        .call(d3.brushX().handleSize(50).on("brush", brushed));
 
     function brushed(){
-        console.log("brushed");
-    }
+        start_domain = brushScale(d3.brushSelection(this)[0]);
+        end_domain = start_domain + 100;
+        console.log(start_domain);
+        updateDotChart(start_domain, end_domain);
+    };
 
+    function updateDotChart(start, end) {
+        d3.select(".dotElts").selectAll("*").remove();
+        var x_scale2 = d3.scaleLinear()
+            .range([0, width])
+            .domain([start, end]); 
+
+        drawChart(x_scale2, svg, 500, d3.format("d"), 3);
+    }
 
     
     // draw chart based on scale values & svg elt
