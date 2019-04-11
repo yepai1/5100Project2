@@ -165,7 +165,7 @@ function nextQuestion()
 
   for(var rep = 1; rep <2; rep++)
   {
-    var temp = genres[Math.floor(Math.random()*11)];
+    var temp = genres[Math.floor(Math.random()*10)];
     //temp use for aesthics
     if(genreQueue.has(temp))
     {
