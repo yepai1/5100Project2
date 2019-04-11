@@ -1,4 +1,4 @@
-// CODE FOR BINNING AND GENERATING CIRCLES WAS ADAPTED FROM https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
+// reference for dot plot: https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
 
 
 let svg = d3.select("#artist_dot_plot");
@@ -7,20 +7,23 @@ const margin = {top: 10, right: 30, bottom: 30, left: 30},
       width = 900
       height = 600 - margin.top - margin.bottom;
 
-var allYears = [];
-var dateOrderedList = [];
-var dateList = [];
-var display_name = "Picasso";
+var metPaintings = [];
+var momaPaintings = [];
+
 var csv = "../datasets/cleandata.csv";
 
 
-d3.csv(csv).then( function(data) {
+d3.csv(csv).then(function(data) {
     data.forEach(function(d) {
         d.Title = d.Title
         d.Year = parseInt(d.Year)
         d.Artist = d.Artist
         d.Museum = d.Museum;
-        // allYears.push(parseInt(d.Year));
+        if (d.Museum === "Met"){
+            metPaintings.push(d);
+        }else if (d.Museum === "Moma"){
+            momaPaintings.push(d);
+        };
     });
 
     // const yearMin = d3.min(data, d => d.Year);
@@ -42,7 +45,6 @@ d3.csv(csv).then( function(data) {
         .append("g")
         .attr("transform", `translate(${margin.left}, -500)`);
 
-
     var x_scale1 = d3.scaleLinear()
         .range([0, width])
         .domain([yearMin, yearMax]); 
@@ -52,10 +54,9 @@ d3.csv(csv).then( function(data) {
         .domain([0, width])
         .range([yearMin, yearMax]); 
 
-    // draw mini chart
-    drawChart(x_scale1, miniSvg, 3000, "", .2);
-    // drawChart(x_scale2, svg, 500, d3.format("d"), 3);
-    // to start
+    // draw mini chart @ call update fuction for brushed chart
+    drawChart(x_scale1, miniSvg, 3000, "", .2, metPaintings, "mini");
+    drawChart(x_scale1, miniSvg, 3000, "", .2, momaPaintings, "mini");
     updateDotChart(1500, 1600);
 
     d3.selectAll(".mini-chart").append("g")
@@ -65,7 +66,6 @@ d3.csv(csv).then( function(data) {
     function brushed(){
         start_domain = brushScale(d3.brushSelection(this)[0]);
         end_domain = start_domain + 100;
-        console.log(start_domain);
         updateDotChart(start_domain, end_domain);
     };
 
@@ -74,15 +74,18 @@ d3.csv(csv).then( function(data) {
         var x_scale2 = d3.scaleLinear()
             .range([0, width])
             .domain([start, end]); 
-
-        drawChart(x_scale2, svg, 500, d3.format("d"), 3);
+        drawChart(x_scale2, svg, 500, d3.format("d"), 3, momaPaintings, "moma");
+        console.log("here");
+        drawChart(x_scale2, svg, 500, d3.format("d"), 3, metPaintings, "met");
     }
 
     
     // draw chart based on scale values & svg elt
-    function drawChart (x, svg, nbins, format, radius_val){
 
-    // histogram use and adding circles adapted from: https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
+    // function for drawing graphs
+    // scale, svg elt, number of bins, format of ticks, circle radius, data set, class
+    function drawChart (x, svg, nbins, format, radius_val, data, class_name){
+ // histogram use and adding circles in this section are adapted from: https://bl.ocks.org/gcalmettes/95e3553da26ec90fd0a2890a678f3f69
 
         const histogram = d3.histogram()
             .domain(x.domain())
@@ -97,6 +100,7 @@ d3.csv(csv).then( function(data) {
         let binContainerEnter = binContainer.enter()
             .append("g")
                 .attr("class", "gBin")
+                .attr("id", class_name)
                 .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
 
         binContainerEnter.selectAll("circle")
@@ -110,7 +114,7 @@ d3.csv(csv).then( function(data) {
                 }))
             .enter()
             .append("circle")
-                .attr("class", "enter")
+                .attr("class", class_name)
                 .attr("cx", 0) 
                 .attr("cy", function(d) {
                     return - d.idx * 2 * d.radius - d.radius; })
@@ -130,75 +134,3 @@ d3.csv(csv).then( function(data) {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// d3.json("../datasets/sample_data_moma.json").then( function(moma) {
-//     d3.json("../datasets/sample_data_met.json").then( function(met) {
-//         moma.forEach(element => {
-//             if (element.Name.includes(display_name)){
-//                 dateList.push(parseInt(element.Date))
-//                 dateOrderedList.push({key: element.Title, value: element.Date})
-//             };
-//         });
-//         met.forEach(element => {
-//             if (element.Artist.includes(display_name)){
-//                 dateList.push(parseInt(element.Date))
-//                 dateOrderedList.push({key: element.Title, value: element.Date})
-//             };
-//         });
-
-//         dateList = [1992, 1992, 1992, 1993, 1994, 1994, 1994, 1995];
-
-
-//         var difference = d3.max(dateList) - d3.min(dateList);
-//         console.log(dateList);
-
-//         var x= d3.scaleLinear()
-//             .range([0, width])
-//             .domain([d3.min(dateList) - 1, d3.max(dateList) + 1]); 
-
-//         var y = d3.scaleLinear()
-//             .range([0, width])
-//             .domain([0, 10]); 
-
-//         var x_axis = d3
-//             .axisBottom(x)
-//             .ticks(difference+1);
-
-//         svg.append("g").attr("class", "x_axis")
-//             .attr("transform", "translate(0," + height + ")")
-//             .call(x_axis);
-
-//         var data = d3.histogram()
-//             .domain(x.domain())
-//             .thresholds(difference)
-//             (dateList);
-//         console.log(data)
-        
-//         var bar = svg.selectAll(".bar")
-//             .data(data)
-//             .enter()
-//             .append("g")
-//             .attr("class", "bar")
-//             .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; });
-        
-//         bar.append("rect")
-//             .attr("x", 1)
-//             .attr("width", x(data[0].x1) - x(data[0].x0) - 1) 
-//             .attr("height", function(d) {return height - y(d.length);})
-//             .attr("fill", "blue")
-        
-//     });
-// });
