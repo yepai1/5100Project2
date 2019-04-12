@@ -326,9 +326,43 @@ function displayArtistInfo(genre)
   + "<br>" + "Check out when they were most active by brushing on the timeline below.";
   document.getElementById("infodiv").appendChild(smallinfo);
 
-  // var artist_dot = document.createElement("circle").setAttribute("id", "")
 
+  var met = document.createElement("div");
+  met.className = "addpadding";
+  var moma = document.createElement("div");
+  moma.className = "addpadding";
+  var artistpick = document.createElement("div");
+  artistpick.className = "addpadding";
+  document.getElementById("infodiv").appendChild(met);
+  document.getElementById("infodiv").appendChild(moma);
+  document.getElementById("infodiv").appendChild(artistpick);
+  
+  var metData = document.createElement("p")
+  metData.className = "smallwords";
+  metData.innerHTML = "The Met Collection";
+  var metColor = document.createElement("div")
+  metColor.className = "Met";
+  metColor.id = "smallboxes";
+  met.appendChild(metData);
+  met.appendChild(metColor);
 
+  var momaData = document.createElement("p")
+  momaData.className = "smallwords";
+  momaData.innerHTML = "MoMa Collection";
+  var momaColor = document.createElement("div")
+  momaColor.className = "Moma";
+  momaColor.id = "smallboxes";
+  moma.appendChild(momaData);
+  moma.appendChild(momaColor);
+
+  var artistData = document.createElement("p")
+  artistData.className = "smallwords";
+  artistData.innerHTML = "Your painter";
+  var artistColor = document.createElement("div")
+  artistColor.className = "artistcolorbox";
+  artistColor.id = "smallboxes";
+  artistpick.appendChild(artistData);
+  artistpick.appendChild(artistColor);
 
 
   var name = genreArtist[genre].name;
