@@ -313,6 +313,23 @@ function displayArtistInfo(genre)
   bio.setAttribute("align", "middle");
   document.getElementById("result").appendChild(bio);
 
+  var museumInfo = document.createElement("p");
+  museumInfo.className = "bigwords";
+  museumInfo.setAttribute("align", "center");
+  museumInfo.innerHTML = "The Painting collections of the Met and the MoMa";
+  document.getElementById("infodiv").appendChild(museumInfo);
+
+  var smallinfo = document.createElement("p")
+  smallinfo.className = "smallwords";
+  smallinfo.setAttribute("align", "center");
+  smallinfo.innerHTML="Each dot below represents a painting from one of the collections. Dark dots represent works by your artist!" 
+  + "<br>" + "Check out when they were most active by brushing on the timeline below.";
+  document.getElementById("infodiv").appendChild(smallinfo);
+
+  // var artist_dot = document.createElement("circle").setAttribute("id", "")
+
+
+
 
   var name = genreArtist[genre].name;
   // toggle visibility of chart and make id of chart the artist name 
