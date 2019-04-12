@@ -2,17 +2,14 @@
 
 
 let svg = d3.select("#artist_dot_plot");
+var artist_selection = "";
 
-// toggle visibility of quiz 
-
-
-const margin = {top: 10, right: 30, bottom: 30, left: 30},
-      width = 900
+const margin = {top: 12, right: 30, bottom: 30, left: 30},
+      width = 800
       height = 600 - margin.top - margin.bottom;
 
 var metPaintings = [];
 var momaPaintings = [];
-var artist_selection = "Picasso";
 var csv = "../datasets/cleandata.csv";
 
 d3.csv(csv).then(function(data) {
@@ -29,7 +26,7 @@ d3.csv(csv).then(function(data) {
     });
 
     // const yearMin = d3.min(data, d => d.Year);
-    const yearMin = 1000;
+    const yearMin = 1200;
     const yearMax = 2019;
 
     // brushed chart
@@ -54,11 +51,10 @@ d3.csv(csv).then(function(data) {
     // reverse scale for brushing 
     var brushScale = d3.scaleLinear()
         .domain([0, width])
-        .range([yearMin, yearMax]); 
+        .range([yearMin, yearMax - 50]); 
 
     // draw mini chart @ call update fuction for brushed chart
     drawChart(x_scale1, miniSvg, 3000, "", .2, data);
-    updateDotChart(1920, 1945);
 
     d3.selectAll(".mini-chart").append("g")
         .attr("class", "brush")
@@ -75,13 +71,11 @@ d3.csv(csv).then(function(data) {
         var x_scale2 = d3.scaleLinear()
             .range([0, width])
             .domain([start, end]); 
-        // drawChart(x_scale2, svg, 500, d3.format("d"), 3, momaPaintings, "moma");
         drawChart(x_scale2, svg, 500, d3.format("d"), 4, data);
     }
 
     
     // draw chart based on scale values & svg elt
-    // function for drawing graphs
     // scale, svg elt, number of bins, format of ticks, circle radius, data set, class
     function drawChart (x, svg, nbins, format, radius_val, data){
 
@@ -97,6 +91,11 @@ d3.csv(csv).then(function(data) {
 
         let binContainer = svg.selectAll(".gBin")
             .data(bins);
+
+        var x_move;
+        var move;
+        var this_artist;
+        var change;
 
         let binContainerEnter = binContainer.enter()
             .append("g")
@@ -116,13 +115,12 @@ d3.csv(csv).then(function(data) {
             .enter()
             .append("circle")
                 .attr("class", function(d){return d.museum})
-                .attr("id", function(d){var this_artist = "" + d.artist + ""; if(this_artist.includes(artist_selection)){console.log("found one");return "personal_artist"}else{return "normal"}})
-                .attr("cx", function(d){ if (d.idx % 4 != 0){var x_move =d.idx%4; return d.radius * 2 * x_move};}) 
-                .attr("cy", function(d) {var move = d.idx / 4; if (d.idx%4 === 0){var change = d.radius}else if(d.idx%4 === 1){change = d.radius * .5}else if(d.idx%4 === 2){change = 0}else if(d.idx%4 === 3){change = d.radius * -.5}; 
+                .attr("id", function(d){this_artist = "" + d.artist + ""; if(this_artist.includes(artist_selection)){return "personal_artist"}else{return "normal"}})
+                .attr("cx", function(d){ if (d.idx % 4 != 0){x_move =d.idx%4; return d.radius * 2 * x_move};}) 
+                .attr("cy", function(d) {move = d.idx / 4; if (d.idx%4 === 0){change = d.radius}else if(d.idx%4 === 1){change = d.radius * .5}else if(d.idx%4 === 2){change = 0}else if(d.idx%4 === 3){change = d.radius * -.5}; 
                     return - move * 2 * d.radius- change;})
                 .attr("r", 0)
-                .attr("r", function(d) {
-                return (d.length==0) ? 0 : d.radius; })
+                .attr("r", function(d) {return (d.length==0) ? 0 : d.radius; })
             binContainerEnter.merge(binContainer)
                 .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
         
@@ -130,7 +128,22 @@ d3.csv(csv).then(function(data) {
                 .attr("class", "axis axis--x")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x).tickSize(0).tickFormat(format));
+            
         }
+
+    // on final quiz button press wait a few seconds and update 
+        document.getElementById("nextButton").addEventListener("click", function(){
+            setTimeout(function(){
+                try {
+                    let name = document.getElementById("artist_name").innerHTML;
+                    artist_selection = name;
+                    // console.log(name)
+                    updateDotChart(1950, 1975); 
+                  }
+                  catch(error) {
+                  }
+            }, 500);
+        });
 
 });
 

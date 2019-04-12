@@ -1,3 +1,11 @@
+// for passing data to the timeline
+name = "none"
+d3.select(".dot-chart")
+    .attr("id", name + "")
+    .style("visibility", "hidden");
+
+
+
 // This is a list for keeping track of how many options are added for current question
 var optionIndexList = [];
 // This is a list keeping track of how many questions are added
@@ -278,6 +286,7 @@ function displayArtistInfo(genre)
 
   artistDisplay = document.createElement("p");
   artistDisplay.className = "bigwords";
+  artistDisplay.id = "artist_name";
   artistDisplay.innerHTML = genreArtist[genre].name
   document.getElementById("resultTitle").appendChild(artistDisplay);
 
@@ -303,6 +312,13 @@ function displayArtistInfo(genre)
   bio.innerHTML = genreArtist[genre].bio;
   bio.setAttribute("align", "middle");
   document.getElementById("result").appendChild(bio);
+
+
+  var name = genreArtist[genre].name;
+  // toggle visibility of chart and make id of chart the artist name 
+  d3.select(".dot-chart")
+    .attr("id", name + "")
+    .style("visibility", "visible");
 }
 
 // helper function to shuffle the list, so users see new things each time
