@@ -10,7 +10,7 @@ const margin = {top: 12, right: 30, bottom: 30, left: 30},
 
 var metPaintings = [];
 var momaPaintings = [];
-var csv = "../datasets/cleandata.csv";
+var csv = "/datasets/cleandata.csv";
 
 d3.csv(csv).then(function(data) {
     data.forEach(function(d) {
